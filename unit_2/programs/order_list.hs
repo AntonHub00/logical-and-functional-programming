@@ -38,5 +38,6 @@ sort_list_prime (x:xs) n
         sort_list_prime (swap_till_lowest (x:xs) n) (n+1)
     | otherwise = sort_list_prime (x:xs) (n+1)
 
+
 -- Call sort_list_prime with a default value (so the user don't have to insert it)
 sort_list (x:xs) = sort_list_prime (x:xs) 2

@@ -49,3 +49,11 @@ Ejemplo:
 ## Tarea
 
 Dada un lista de enteros, ordenarla
+
+---
+
+- Borrar los números primos de una lista
+- Borrar números en posición múltiplo de 3 de una lista
+- Borrar menor de una lista
+- Borrar los valores en posición múltiplo de n de una lista
+- Dado un vector calcular su longitud euclidiana
