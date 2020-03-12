@@ -3,10 +3,12 @@ students = [("James", 70.0), ("John", 85.0), ("Robert", 100.0), ("Michael", 75.0
 
 
 -- Get amount of aproved students
-gaas [] = 0
-gaas ((name, grade):xs)
-    | (grade >= 70) = 1 + (gaas xs)
-    | otherwise = (gaas xs)
+gaas [] option = 0
+gaas ((name, grade):xs) option
+    | (grade >= 70) = if (option == "approved") then 1 + (gaas xs option)
+                                                else 0 + (gaas xs option)
+    | otherwise = if (option /= "approved") then 1 + (gaas xs option)
+                                                else 0 + (gaas xs option)
 
 
 -- Get amount of aproved students
@@ -17,60 +19,44 @@ gaus ((name, grade):xs)
 
 
 -- Get name of approved students
-gnas [] = []
-gnas ((name, grade):xs)
-    | (grade >= 70) = name:(gnas xs)
-    | otherwise = (gnas xs)
+gnas [] option = []
+gnas ((name, grade):xs) option
+  | (grade >= 70) = if (option == "approved") then name:(gnas xs option)
+                                              else (gnas xs option)
+  | otherwise = if (option /= "approved") then name:(gnas xs option)
+                                              else (gnas xs option)
 
 
 -- Get average
--- ga (addition_total, num_elements) = (addition_total / num_elements)
-ga addition_total num_elements = (addition_total / num_elements)
-
-
--- Get the grades sum of approved students
-ggsas [] = 0
-ggsas ((name, grade):xs)
-    | (grade >= 70) = grade + (ggsas xs)
-    | otherwise = (ggsas xs)
-
-
--- Get the grades sum of unapproved students
-ggsus [] = 0
-ggsus ((name, grade):xs)
-    | (grade < 70) = grade + (ggsus xs)
-    | otherwise = (ggsus xs)
-
-
--- test::[(String,Int)]->(Int,Int)->Double
--- test [] (fgrade, num_elements) = (fgrade / num_elements)
--- test ((name, grade):xs) (fgrade, num_elements)
---     | (grade < 70) = (test xs (fgrade+grade, num_elements+1))
---     | otherwise = (test xs (fgrade, num_elements))
+ga [] (fgrade, num_elements) option = (fgrade / num_elements)
+ga ((name, grade):xs) (fgrade, num_elements) option
+  | (grade >= 70) = if (option == "approved") then (ga xs (fgrade+grade, num_elements+1.0) option)
+                                              else (ga xs (fgrade, num_elements) option)
+  | otherwise = if (option /= "approved") then (ga xs (fgrade+grade, num_elements+1.0) option)
+                                              else (ga xs (fgrade, num_elements) option)
 
 
 -- Approved students sublist
-asb [] = []
-asb ((name, grade):xs)
-    | (grade >= 70) = (name, grade):(asb xs)
-    | otherwise = (asb xs)
+ss [] option = []
+ss ((name, grade):xs) option
+    | (grade >= 70) = if (option == "approved") then (name, grade):(ss xs option)
+                                                else (ss xs option)
+    | otherwise = if (option /= "approved") then (name, grade):(ss xs option)
+                                                else (ss xs option)
 
 
--- Unapproved students sublist
-usb [] = []
-usb ((name, grade):xs)
-    | (grade < 70) = (name, grade):(usb xs)
-    | otherwise = (usb xs)
+-- call gxgsn with proper params
+gxgsn_prime [] option grade name = name
+gxgsn_prime ((name, grade):xs) option current_grade current_name
+  | (current_grade > grade) = if (option == "approved") then (gxgsn_prime xs option current_grade current_name)
+                                                        else (gxgsn_prime xs option grade name)
+  | otherwise = if (option /= "approved") then (gxgsn_prime xs option current_grade current_name)
+                                                        else (gxgsn_prime xs option grade name)
 
 
--- Best grade student name
-bgsn_prime [] grade name = name
-bgsn_prime ((name, grade):xs) current_grade current_name
-  | (current_grade > grade) = (bgsn_prime xs current_grade current_name)
-  | otherwise = (bgsn_prime xs grade name)
-
-bgsn [] = []
-bgsn ((name, grade):xs) = bgsn_prime ((name, grade):xs) grade name
+-- Get the student name with the best or worst grade
+gxgsn [] option = []
+gxgsn ((name, grade):xs) option = gxgsn_prime ((name, grade):xs) option grade name
 
 
 menu =
@@ -89,31 +75,31 @@ menu =
 
         if (choice == "1") then
             do
-                putStrLn ("\nResult: " ++ (show (gaas students)) ++"\n")
+                putStrLn ("\nResult: " ++ (show (gaas students "approved")) ++"\n")
                 menu
         else if (choice == "2") then
             do
-                putStrLn ("\nResult: " ++ (show (gnas students)) ++"\n")
+                putStrLn ("\nResult: " ++ (show (gnas students "approved")) ++"\n")
                 menu
         else if (choice == "3") then
             do
-                putStrLn ("\nResult: " ++ (show (ga (ggsas students) (gaas students))) ++"\n")
+                putStrLn ("\nResult: " ++ (show (ga students (0.0, 0.0) "approved")) ++"\n")
                 menu
         else if (choice == "4") then
             do
-                putStrLn ("\nResult: " ++ (show (ga (ggsus students) (gaus students))) ++"\n")
+                putStrLn ("\nResult: " ++ (show (ga students (0.0, 0.0) "unapproved")) ++"\n")
                 menu
         else if (choice == "5") then
             do
-                putStrLn ("\nResult: " ++ (show (asb students)) ++"\n")
+                putStrLn ("\nResult: " ++ (show (ss students "approved")) ++"\n")
                 menu
         else if (choice == "6") then
             do
-                putStrLn ("\nResult: " ++ (show (usb students)) ++"\n")
+                putStrLn ("\nResult: " ++ (show (ss students "unapproved")) ++"\n")
                 menu
         else if (choice == "7") then
             do
-                putStrLn ("\nResult: " ++ (show (bgsn students)) ++"\n")
+                putStrLn ("\nResult: " ++ (show (gxgsn students "approved")) ++"\n")
                 menu
         else
             return ()
