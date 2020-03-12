@@ -57,3 +57,22 @@ Dada un lista de enteros, ordenarla
 - Borrar menor de una lista
 - Borrar los valores en posición múltiplo de n de una lista
 - Dado un vector calcular su longitud euclidiana
+
+---
+
+Ordenamiento de lista
+
+- Encontrar el menor
+- Borrar de la lista el menor de tal manera que tengamos una lista sin el menor
+- Construir un nueva lista poniendo el menro de la cabeza
+- Repetir operación con la lista a la que se le borró el menor
+
+---
+
+En programación funcional existe el principio de inmutabilidad.
+
+Cuando hay algún código que hace cambiar el cálculo y por lo
+tanto la salida de una función produce "efectos colaterales"
+
+Una función que recibe un valor a y devuelve b nunca cambiará el valor de retorno
+ante la entrada de a.
