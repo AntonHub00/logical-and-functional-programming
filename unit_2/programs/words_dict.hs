@@ -1,30 +1,6 @@
 test_str = " Some awesome text in this awesome way with some random text written in here"
 test_str_caps = "A B A C C A B C"
 
-
--- First try
-
-
--- count [] = 0
--- count (x:xs) = 1 + (count xs)
-
-
--- remove_n [] n = []
--- remove_n (x:xs) n = if (x == n) then (remove_n xs n) else x:(remove_n xs n)
-
-
--- test [] = []
--- test (x:xs) =
---     let
---         new_list = (remove_n (x:xs) x)
---         occurrences = ((count (x:xs)) - (count new_list))
---     in
---         (x, occurrences):(test new_list)
-
-
--- Second try
-
-
 -- "Update"
 --
 -- If the word passed matches, this function will return the same list of
