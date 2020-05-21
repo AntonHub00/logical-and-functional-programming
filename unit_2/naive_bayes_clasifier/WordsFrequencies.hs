@@ -1,0 +1,38 @@
+module WordsFrequencies where
+
+-- "Update"
+--
+-- If the word passed matches, this function will return the same list of
+-- tuples passed but the frequency of the word matched updated (+1).
+-- If the word doesn't match any tuple, a new tuple is added
+--
+-- ((x1, x2):xs) = List of tuples
+-- x1 = Word (string)
+-- x2 = Frequency (integer)
+-- m = Word to match (string)
+ud [] m = [(m, 1)]
+ud ((x1, x2):xs) m = if (x1 == m) then (x1, x2+1):xs else (x1, x2):(ud xs m)
+
+
+-- "Get Frequency Prime"
+--
+-- Calls "ud" function for every word in the list so it will get the words
+-- frequencies till the end of the list and and return them.
+-- It returns just "ys" because the first tuple is the "empty" tuple added at
+-- the beginning.
+--
+-- (x:xs) = List of words
+-- ((y1, y2):ys) = List of tuples
+-- y1 = Word (string)
+-- y2 = Frequency (integer)
+gfp [] ((y1, y2):ys) = ys
+gfp (x:xs) ((y1, y2):ys) = gfp xs (ud ((y1, y2):ys) x)
+
+
+-- "Get Frequency"
+--
+-- Calls "gfp" with the proper init values.
+--
+-- (x:xs) = words list to get words frequency of (list)
+-- "Empty" list of tuples is passed to gfp to be filled
+gf (x:xs) = gfp (x:xs) [("", 0)]

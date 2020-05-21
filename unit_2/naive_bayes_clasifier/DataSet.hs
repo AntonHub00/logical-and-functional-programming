@@ -1,3 +1,6 @@
+module DataSet where
+
+-- "Training" text for football class
 football_sample =
     "El delantero mexicano del Inter Miami CF, Rodolfo Pizarro, \
     \ganó el sábado el torneo de videojuego FIFA organizado por la novel organización \
@@ -92,6 +95,7 @@ football_sample =
     \Yo vendo dulces, pero casi no hay gente. Pasan, pero no compran a como vendemos \
     \en los partidos. Sí afectó, porque en juegos hay más dinero y mayor venta"
 
+-- "Training" text for politics class
 politics_sample =
     "El presidente Iván Duque, aseguró, en entrevista con Pregunta \
     \Yamid, que frente a los pronósticos de la pandemia del coronavirus a nivel \
@@ -188,6 +192,7 @@ politics_sample =
     \se negó a cumplir la orden dada por los jueces de convocar el pleno en el que \
     \precedentes”, sentenció la magistrada."
 
+-- "Training" text for religion class
 religion_sample =
     "Aunque Adán y Eva disfrutaban al principio de mucha libertad, \
     \Jehová les impuso ciertos límites. Algunos les resultaban naturales, pero eran \
@@ -288,6 +293,7 @@ religion_sample =
     \-Proverbios 3:5-6. \
     \-Porque por gracia"
 
+-- Sample text to be classified
 -- sample_text =
 --     "Podemos desplazarnos para lo fundamental, no salir a la calle sin que haya algo \
 --     \verdaderamente necesario que nos obligue a salir, lo mejor es quedarnos. Vamos \
@@ -295,6 +301,7 @@ religion_sample =
 --     \desde un hotel de Tijuana donde mañana iniciará su segundo día de gira de \
 --     \trabajo."
 
+-- Sample text to be classified
 -- sample_text =
 --     "Que nunca te abandonen el amor y la verdad: \
 --     \llévalos siempre alrededor de tu cuello \
@@ -302,8 +309,14 @@ religion_sample =
 --     \Contarás con el favor de Dios \
 --     \y tendrás buena fama entre la gente."
 
+-- Sample text to be classified
+-- sample_text =
+--     "Estas competiciones no profesionales, todas las que van por debajo de la League \
+--      \Two, fueron declaradas nulas, por lo que carece de validez lo que se había \
+--      \disputado hasta ahora. Igualmente, se dio por concluido el fútbol femenino sin \
+--      \que se tengan en cuenta tampoco los resultados previos."
+
 sample_text =
-    "Estas competiciones no profesionales, todas las que van por debajo de la League \
-     \Two, fueron declaradas nulas, por lo que carece de validez lo que se había \
-     \disputado hasta ahora. Igualmente, se dio por concluido el fútbol femenino sin \
-     \que se tengan en cuenta tampoco los resultados previos."
+    "Jehová es el creador de acuerdo a las citas bíblicas es Dios y \
+    \ señor. La justificia en el territorio político no incluye a Dios. En el juego \
+    \ de Arnsenal y Napoli un mediocampista agradeció a Dios"
