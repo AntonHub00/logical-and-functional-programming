@@ -38,13 +38,13 @@ require_skills(teacher,
                     "communication",
                     "critical_thinking",
                     "organization",
-                    "creativity"
+                    "creativity",
                     "teamwork",
                     "problem_solving",
-                    "childcare"
+                    "childcare",
                     "leadership",
                     "multitasking",
-                    "patience",
+                    "patience"
                 ]).
 
 
@@ -60,7 +60,7 @@ require_skills(security_guard,
                     "flexibility",
                     "honesty",
                     "professionalism",
-                    "attitude",
+                    "attitude"
                 ]).
 
 
@@ -76,7 +76,7 @@ require_skills(software_developer,
                     "project_management",
                     "process_analysis",
                     "deductive_reasoning",
-                    "inductive_reasoning",
+                    "inductive_reasoning"
                 ]).
 
 
