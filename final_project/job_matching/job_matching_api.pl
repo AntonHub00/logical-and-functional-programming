@@ -14,7 +14,7 @@
 :- http_handler('/job_matching', handle_jobs_matching_requests, []).
 
 
-% Gets the request parameters and sends it to Skills.
+% Gets the request parameters and sends it to skills.
 get_skills(_, _{result:Skills}) :-
     skills(Skills).
 

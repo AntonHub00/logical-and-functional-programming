@@ -58,6 +58,8 @@ matches_job(PersonSkills, GivenPercentage, Result) :-
     ).
 
 
+% Gets all the skills as a list of lists, merge all the lists into a single one
+% and remove all de duplicate values
 skills(Skills) :-
     findall(SkillsTemp, require_skills(_, SkillsTemp), ListOfLists),
     append(ListOfLists, List),
