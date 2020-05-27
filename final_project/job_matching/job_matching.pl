@@ -1,6 +1,6 @@
 % Defines this as a module so it can be loaded from other files.
 % /n is the arity.
-:- module(job_matching, [matches_job/3]).
+:- module(job_matching, [matches_job/3, skills/1]).
 
 
 % "Imports" jobs and its require_skills.
@@ -56,3 +56,9 @@ matches_job(PersonSkills, GivenPercentage, Result) :-
         matches_job(PersonSkills, GivenPercentage, GotPercentage, SuitableJob),
         Result
     ).
+
+
+skills(Skills) :-
+    findall(SkillsTemp, require_skills(_, SkillsTemp), ListOfLists),
+    append(ListOfLists, List),
+    list_to_set(List, Skills).

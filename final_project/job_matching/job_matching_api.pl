@@ -10,20 +10,33 @@
 
 
 % URL handlers.
-:- http_handler('/sum', handle_request_sum, []).
-:- http_handler('/job', handle_request_job, []).
+:- http_handler('/skills', handle_skills_request, []).
+:- http_handler('/job_matching', handle_jobs_matching_requests, []).
+
+
+% Gets the request parameters and sends it to Skills.
+get_skills(_, _{result:Skills}) :-
+    skills(Skills).
 
 
 % Gets the request parameters and sends it to matches_job.
-get_skills(_{skills:Skills, match_percentage:MatchPercentage}, _{result:Result}) :-
+get_job_matching(_{skills:Skills, match_percentage:MatchPercentage}, _{result:Result}) :-
     matches_job(Skills, MatchPercentage, Result).
 
 
 % Gets the requests parameters, parses it, sends it to the processing function
 % gets the result and returns a response as JSON.
-handle_request_job(Request) :-
+handle_skills_request(Request) :-
     http_read_json_dict(Request, Query),
     get_skills(Query, Solution),
+    reply_json_dict(Solution).
+
+
+% Gets the requests parameters, parses it, sends it to the processing function
+% gets the result and returns a response as JSON.
+handle_jobs_matching_requests(Request) :-
+    http_read_json_dict(Request, Query),
+    get_job_matching(Query, Solution),
     reply_json_dict(Solution).
 
 
