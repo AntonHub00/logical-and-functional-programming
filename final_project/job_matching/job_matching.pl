@@ -1,67 +1,42 @@
-:- module(job_matching, [matches_job/3, matches_job/4]).
-
-% Defines the skills a doctor needs
-require_skills(doctor,
-                [
-                    "communication",
-                    "emotional_intelligence",
-                    "problem"-solving,
-                    "attention_to_detail",
-                    "decision"-making,
-                    "professionalism",
-                    "teamwork",
-                    "leadership",
-                    "resilience",
-                    "capacity_for_learning"
-                ]).
+% Defines this as a module so it can be loaded from other files.
+% /n is the arity.
+:- module(job_matching, [matches_job/3]).
 
 
-% Defines the skills a lawyer needs
-require_skills(lawyer,
-                [
-                    "communication",
-                    "attention_to_detail",
-                    "research",
-                    "problem"-solving,
-                    "resilience",
-                    "time_management",
-                    "creativity",
-                    "stress_management",
-                    "business_skills",
-                    "creativity"
-                ]).
+% "Imports" jobs and its require_skills.
+:- use_module(jobs_and_skills).
 
 
-% Gets the l_length of a list. Returns: Number
+% Gets the length of a list.
+% Returns: Number.
 l_length([], 0).
 l_length([_Head | Tail], Counter) :-
     l_length(Tail, TempCounter),
     Counter is TempCounter + 1.
 
-% To know if a elements belongs to a list. Returns: Boolean
+
+% To know if an element belongs to a given list.
+% Returns: Boolean.
 member(Match, [Match | _Tail]) :- !.
 member(Match, [_Head | Tail]) :- member(Match, Tail).
 
 
-% Counts how many elements in a first list are in the a second list.
-% Return: Number
-
-%Base case.
+% Counts how many elements in the first list are in the the second list.
+% Returns: Number.
 count_matches([], _Skills, 0) :- !.
-% Case current elements of the first list is in the second list.
 count_matches([Head | Tail], Skills, Counter) :-
     member(Head, Skills),
     count_matches(Tail, Skills, TempCounter),
     Counter is TempCounter + 1, !.
-% Case current elements of the first list is NOT in the second list.
 count_matches([Head | Tail], Skills, Counter) :-
     not(member(Head, Skills)),
     count_matches(Tail, Skills, TempCounter),
     Counter is TempCounter.
 
-% Gets the the jobs that matches the skills with the given percentage and the
-% got percentage
-% How to query: matches_job([skill1, ...], atom, Variable, Variable)
+
+% Gets the the jobs that matches the person skills with the minimum given match
+% percentage (or higher) and the got percentage.
+% How to query: matches_job([skill1, ...], atom, Variable, Variable).
 matches_job(PersonSkills, GivenPercentage, GotPercentage, SuitableJob) :-
     require_skills(SuitableJob, Skills),
     l_length(Skills, JobSkillsAmount),
@@ -69,20 +44,15 @@ matches_job(PersonSkills, GivenPercentage, GotPercentage, SuitableJob) :-
     GotPercentage is ((MatchesAmount * 100 ) / JobSkillsAmount),
     GotPercentage >= GivenPercentage.
 
+
 % Executes matches_job but get all results without needing to write ";".
-% Returns: list of lists [[job1, percentage_got_1], [job2, percentage_got_3], ...]
+% How to query: matches_job([skill1, ...], atom, Variable).
+% Returns: list of lists [[job1, percentage_got_1], [job2, percentage_got_3], ...].
 matches_job(PersonSkills, GivenPercentage, Result) :-
     findall(
+        % Creates a list of lists with all the results as
+        %[[SuitableJob, GotPercentage], ...] and then "asigns" it to "Result"
         [SuitableJob,GotPercentage],
-        matches_job(PersonSkills, GivenPercentage,
-        GotPercentage, SuitableJob),Result
+        matches_job(PersonSkills, GivenPercentage, GotPercentage, SuitableJob),
+        Result
     ).
-
-% References
-
-% Doctor skills:
-% https://www.careeraddict.com/doctor-skills
-
-% Lawyer skills:
-% https://www.prospects.ac.uk/jobs-and-work-experience/job-sectors/law-sector/7-skills-for-a-successful-law-career,
-% https://amazelaw.com/9-skills-successful-lawyer/

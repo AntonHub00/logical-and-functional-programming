@@ -1,33 +1,36 @@
+% "Imports" the HTTP server modules needed to create the REST API.
 :- use_module(library(http/thread_httpd)).
 :- use_module(library(http/http_dispatch)).
 :- use_module(library(http/http_json)).
 
-% My module
+
+% Local module to get the possible jobs based on the skills a person has
+% and the given minimum match percentage.
 :- use_module(job_matching).
+
 
 % URL handlers.
 :- http_handler('/sum', handle_request_sum, []).
 :- http_handler('/job', handle_request_job, []).
 
-% has_skills(laywer, ["skill1","skill2"]).
-% has_skills(doctor, ["skill1","skill2"]).
 
-get_skills(_{skills:S, match_percentage:M}, _{result:R}) :-
-    matches_job(S, M, R).
+% Gets the request parameters and sends it to matches_job.
+get_skills(_{skills:Skills, match_percentage:MatchPercentage}, _{result:Result}) :-
+    matches_job(Skills, MatchPercentage, Result).
 
-% solve(_{a:X, b:Y}, _{answer:N}) :- number(X), number(Y), N is X + Y.
 
-% handle_request_sum(Request) :-
-%     http_read_json_dict(Request, Query),
-%     solve(Query, Solution),
-%     reply_json_dict(Solution).
-
+% Gets the requests parameters, parses it, sends it to the processing function
+% gets the result and returns a response as JSON.
 handle_request_job(Request) :-
     http_read_json_dict(Request, Query),
     get_skills(Query, Solution),
     reply_json_dict(Solution).
 
+
+% Sets the required server values.
 server(Port) :-
     http_server(http_dispatch, [port(Port)]).
 
+
+% Starts the HTTP server.
 :- initialization(server(8000)).
