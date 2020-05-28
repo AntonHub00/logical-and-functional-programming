@@ -1,82 +1,82 @@
 :- module(jobs_and_skills, [require_skills/2]).
 
 % Defines the skills a doctor needs
-require_skills(doctor,
+require_skills("Doctor",
                 [
-                    "communication",
-                    "emotional_intelligence",
-                    "problem_solving",
-                    "attention_to_detail",
-                    "decision_making",
-                    "professionalism",
-                    "teamwork",
-                    "leadership",
-                    "resilience",
-                    "capacity_for_learning"
+                    "Communication",
+                    "Emotional intelligence",
+                    "Problem-solving",
+                    "Attention to detail",
+                    "Decision-making",
+                    "Professionalism",
+                    "Teamwork",
+                    "Leadership",
+                    "Resilience",
+                    "Capacity for learning"
                 ]).
 
 
 % Defines the skills a lawyer needs
-require_skills(lawyer,
+require_skills("Lawyer",
                 [
-                    "communication",
-                    "attention_to_detail",
-                    "research",
-                    "problem_solving",
-                    "resilience",
-                    "time_management",
-                    "creativity",
-                    "stress_management",
-                    "business_skills",
-                    "creativity"
+                    "Communication",
+                    "Attention to detail",
+                    "Research",
+                    "Problem-solving",
+                    "Resilience",
+                    "Time management",
+                    "Creativity",
+                    "Stress management",
+                    "Business skills",
+                    "Creativity"
                 ]).
 
 
 % Defines the skills a teacher needs
-require_skills(teacher,
+require_skills("Teacher",
                 [
-                    "communication",
-                    "critical_thinking",
-                    "organization",
-                    "creativity",
-                    "teamwork",
-                    "problem_solving",
-                    "childcare",
-                    "leadership",
-                    "multitasking",
-                    "patience"
+                    "Communication",
+                    "Critical thinking",
+                    "Organization",
+                    "Creativity",
+                    "Teamwork",
+                    "Problem-solving",
+                    "Childcare",
+                    "Leadership",
+                    "Multitasking",
+                    "Patience"
                 ]).
 
 
 % Defines the skills a security guard needs
-require_skills(security_guard,
+require_skills("Security guard",
                 [
-                    "communication",
-                    "observation",
-                    "strength",
-                    "alertness",
-                    "teamwork",
-                    "problem_solving",
-                    "flexibility",
-                    "honesty",
-                    "professionalism",
-                    "attitude"
+                    "Communication",
+                    "Observation",
+                    "Strength",
+                    "Alertness",
+                    "Teamwork",
+                    "Problem-solving",
+                    "Flexibility",
+                    "Honesty",
+                    "Professionalism",
+                    "Attitude"
                 ]).
 
 
 % Defines the skills a software developer guard needs
-require_skills(software_developer,
+require_skills("Software developer",
                 [
-                    "creativity",
-                    "communication",
-                    "critical_thinking",
-                    "concentration",
-                    "teamwork",
-                    "optimization",
-                    "project_management",
-                    "process_analysis",
-                    "deductive_reasoning",
-                    "inductive_reasoning"
+                    "Creativity",
+                    "Communication",
+                    "Critical thinking",
+                    "Concentration",
+                    "Teamwork",
+                    "Optimization",
+                    "Project management",
+                    "Process analysis",
+                    "Deductive reasoning",
+                    "Inductive reasoning"
                 ]).
 
 
