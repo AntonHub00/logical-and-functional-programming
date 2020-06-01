@@ -25,7 +25,6 @@ require_skills("Lawyer",
                     "Problem-solving",
                     "Resilience",
                     "Time management",
-                    "Creativity",
                     "Stress management",
                     "Business skills",
                     "Creativity"
